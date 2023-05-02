@@ -3,7 +3,7 @@ import { ReactComponent as Logo } from '../../assets/logo.svg';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 
-export function SignIn() {
+export function SignUp() {
   return (
     <Container>
       <Brand>
@@ -11,7 +11,13 @@ export function SignIn() {
         <h1>food explorer</h1>
       </Brand>
       <Form>
-      <h1>Faça login</h1>
+      <h1>Crie sua conta</h1>
+      
+      <p>Seu nome</p>
+      <Input
+        type="text"
+        placeholder="Exemplo: Maria"
+      />
       
       <p>Email</p>
       <Input type="email"
@@ -23,10 +29,10 @@ export function SignIn() {
         type="password"
         placeholder="No mínimo 6 (seis) caracteres"
       />
-      <Button title="Entrar" />
+      <Button title="Criar Conta" />
 
       <div>
-        <a href="#">Criar uma conta</a>
+        <a href="#">Já tenho uma conta</a>
       </div>
       </Form>
     </Container>

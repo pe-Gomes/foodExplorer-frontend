@@ -31,5 +31,110 @@ export default {
 
     CARROT_100: "rgba(251,169,76,1)",
     MINT_100: "rgba(4,211,97,1)"
+  },
+
+  FONTS: {
+    POPPINS_100_MEDIUM: {
+      "font-family": '"Poppins", sans-serif',
+      "font-weight": "500",
+      "font-size": "14px",
+      "line-height": "24px",
+    },
+
+    POPPINS_200_MEDIUM: {
+      "font-family": '"Poppins", sans-serif',
+      "font-weight": "500",
+      "font-size": "20px",
+      "line-height": "160%",
+    },
+
+    POPPINS_300_BOLD: {
+      "font-family": '"Poppins", sans-serif',
+      "font-weight": "700",
+      "font-size": "24px",
+      "line-height": "140%",
+    },
+
+    POPPINS_300_REGULAR: {
+      "font-family": '"Poppins", sans-serif',
+      "font-weight": "400",
+      "font-size": "24px",
+      "line-height": "140%",
+    },
+
+    POPPINS_400_MEDIUM: {
+      "font-family": '"Poppins", sans-serif',
+      "font-weight": "500",
+      "font-size": "32px",
+      "line-height": "140%",
+    },
+
+    POPPINS_500_MEDIUM: {
+      "font-family": '"Poppins", sans-serif',
+      "font-weight": "500",
+      "font-size": "40px",
+      "line-height": "140%",
+    },
+
+    ROBOTO_SMALLEST_REGULAR: {
+      "font-family": '"Roboto", sans-serif',
+      "font-weight": "400",
+      "font-size": "12px",
+      "line-height": "160%",
+    },
+
+    ROBOTO_SMALLER_REGULAR: {
+      "font-family": '"Roboto", sans-serif',
+      "font-weight": "400",
+      "font-size": "14px",
+      "line-height": "160%",
+    },
+
+    ROBOTO_SMALLER_BOLD: {
+      "font-family": '"Roboto", sans-serif',
+      "font-weight": "700",
+      "font-size": "14px",
+      "line-height": "160%",
+    },
+
+    ROBOTO_SMALL_SPACED: {
+      "font-family": '"Roboto", sans-serif',
+      "font-weight": "400",
+      "font-size": "16px",
+      "line-height": "160%",
+    },
+
+    ROBOTO_SMALL_REGULAR: {
+      "font-family": '"Roboto", sans-serif',
+      "font-weight": "400",
+      "font-size": "16px",
+      "line-height": "100%",
+    },
+    
+    ROBOTO_BIG_BOLD: {
+      "font-family": '"Roboto", sans-serif',
+      "font-weight": "700",
+      "font-size": "20px",
+      "line-height": "160%",
+    },
+
+    ROBOTO_BIGGER_BOLD: {
+      "font-family": '"Roboto", sans-serif',
+      "font-weight": "700",
+      "font-size": "24px"
+    },
+
+    ROBOTO_BIGGEST_REGULAR: {
+      "font-family": '"Roboto", sans-serif',
+      "font-weight": "400",
+      "font-size": "32px",
+      "line-height": "160%",
+    },
+
+    ROBOTO_GIANT_BOLD: {
+      "font-family": '"Roboto", sans-serif',
+      "font-weight": "700",
+      "font-size": "42px"
+    }
   }
 }

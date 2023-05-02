@@ -31,4 +31,8 @@ export default createGlobalStyle`
   button:hover {
     background-color: ${({theme})=> theme.COLORS.TOMATO_200};
   }
+
+  input, button, textarea, select {
+    outline: none;
+  }
 `;

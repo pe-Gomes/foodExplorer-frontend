@@ -5,10 +5,15 @@ export const Container = styled.form`
 
   background-color: ${({theme})=> theme.COLORS.DARK_900};
 
-  > input {
+  display: flex;
+  
+  align-items: center;
+
+  input {
     width: 100%;
     height: 48px;
     border: none;
+    border-radius: 5px;
 
     padding: 16px 14px;
     background: transparent;
