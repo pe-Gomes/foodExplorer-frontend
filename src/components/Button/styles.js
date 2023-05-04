@@ -12,9 +12,7 @@ export const Container = styled.button`
   border-radius: 5px;
   padding: 12px;
   
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  line-height: 24px;
+  ${({theme})=> theme.FONTS.POPPINS_100_MEDIUM};
   color: ${({theme})=> theme.COLORS.LIGHT_100};
   
   background-color: ${({theme})=> theme.COLORS.TOMATO_100};

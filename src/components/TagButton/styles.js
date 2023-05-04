@@ -4,8 +4,6 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
-  padding-right: 16px;
-
   border-radius: 5px;
   
   border: ${({theme, isNew})=> isNew ? `dashed 1px ${theme.COLORS.LIGHT_500}` : "none"};
@@ -36,6 +34,7 @@ export const Container = styled.div`
       color: ${({theme}) => theme.COLORS.LIGHT_100};
       width: 10px;
       height: 10px;
+      margin-right: 16px;
 
       path {
         fill: ${({ theme, isNew }) => isNew ? theme.COLORS.LIGHT_500 : theme.COLORS.LIGHT_100};

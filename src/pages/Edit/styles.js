@@ -77,10 +77,23 @@ export const Form = styled.div`
     }
   }
 
-  .saveButton {
+  .saveButton, .deleteButton {
     display: flex;
     width: 172px;
+  }
+  
+  .saveButton {
     background-color: ${({theme})=> theme.COLORS.TOMATO_400};
+    &:hover {
+      background-color: ${({theme})=> theme.COLORS.TOMATO_100}
+    }
+  }
+
+  .deleteButton {
+    background-color: ${({theme})=> theme.COLORS.DARK_800};
+    &:hover {
+      background-color: ${({theme})=> theme.COLORS.LIGHT_700};
+    }
   }
 `;
 
@@ -202,13 +215,13 @@ export const TagsWrapper = styled.div`
 
 export const ThirdRow = styled.div`
   margin: 32px 0;
- 
+  
   > div {
     display: flex;
     gap: 32px;
     justify-content: flex-end;
   }
- 
+
   button {
     margin-top: 32px;
   }

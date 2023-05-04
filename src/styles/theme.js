@@ -19,12 +19,14 @@ export default {
     DARK_900: "rgba(13,29,37,1)",
     DARK_1000: "rgba(25,34,39,1)",
 
-    GRADIENT_100: "linear-gradient(rgba(0,10,15,0,2725), #000A0F)",
+    GRADIENT_100: "linear-gradient(rgba(0,10,15,0.2725), #000A0F)",
+    GRADIENT_100_REVERSE: "linear-gradient(#000A0F, rgba(0,10,15,0.2725))",
     GRADIENT_200: "linear-gradient(#091E26, #00131C)",
     
     TOMATO_100: "rgba(117,3,16,1)",
     TOMATO_200: "rgba(146,0,14,1)",
     TOMATO_300: "rgba(171,34,85,1)",
+    TOMATO_400: "rgba(171,77,85,1)",
     
     CAKE_100: "rgba(6,94,124,1)",
     CAKE_200: "rgba(130,243,255,1)",

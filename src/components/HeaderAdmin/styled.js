@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   grid-area: "header";
   
-  width: 100vw;
+  width: 100%;
   height: 104px;
 
   padding: 24px 123px;

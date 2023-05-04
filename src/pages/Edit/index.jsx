@@ -11,7 +11,7 @@ import { Button } from "../../components/Button";
 import { Footer } from '../../components/Footer';
 
 
-export function New() {
+export function Edit() {
 
   return (
     <Container>
@@ -20,7 +20,7 @@ export function New() {
         <header>
           <IconButton icon={LeftArrow} title="voltar" />
         </header>
-        <h1>Adicionar prato</h1>
+        <h1>Editar prato</h1>
         <Form>
           <FirstRow>
             <InputWrapper className="fileInput"> 
@@ -66,6 +66,7 @@ export function New() {
             <p>Descrição</p>
             <TextArea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
             <div>
+              <Button title="Excluir prato" className="deleteButton" />
               <Button title= "Salvar Alterações" className="saveButton" />
             </div>
           </ThirdRow>
