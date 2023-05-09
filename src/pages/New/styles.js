@@ -14,6 +14,7 @@ export const Container = styled.div`
 
    header {
     margin-top: 24px;
+    width: fit-content;
     
     ${({theme})=>theme.FONTS.POPPINS_300_BOLD};
     
@@ -21,6 +22,7 @@ export const Container = styled.div`
       margin-right: 11px;
       font-size: 32px;
     }
+    
   }
   
   > main {
@@ -211,5 +213,9 @@ export const ThirdRow = styled.div`
  
   button {
     margin-top: 32px;
+
+    &:hover {
+      background-color: ${({theme})=> theme.COLORS.TOMATO_200};
+    }
   }
 `;

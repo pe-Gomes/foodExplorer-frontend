@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const Container = styled.div`
   display: flex;
   align-items: center;
 
-  background: transparent;
-  border: none;
-
   cursor: pointer;
+
+
+  ${({theme})=> theme.FONTS_POPPINS_300_BOLD};
+  color: ${({theme})=> theme.COLORS.WHITE_100};
 
   &:hover{
     background-color: transparent;

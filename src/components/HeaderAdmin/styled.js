@@ -89,7 +89,7 @@ export const ActionButtons = styled.div`
     display: flex;
     align-items: center;
 
-    > button {
+    > button:first-child {
     margin: 0 32px;
     width: 216px;
   }

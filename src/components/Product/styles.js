@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 462px;
+  min-width: 258px;
 
   position: relative;
   
@@ -15,6 +16,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 
     ${({theme})=> theme.FONTS.POPPINS_300_BOLD};
     color: ${({theme})=> theme.COLORS.LIGHT_300};
@@ -23,6 +25,8 @@ export const Container = styled.div`
   > p {
     ${({theme})=> theme.FONTS.ROBOTO_SMALLER_REGULAR};
     color: ${({theme})=> theme.COLORS.LIGHT_400};
+    text-align: center;
+    height: 44px;
   }
 
   > span {
@@ -35,15 +39,23 @@ export const Container = styled.div`
     height: 176px;
     width: 176px;
     margin-bottom: 15px;
+    pointer-events: none;
+
+    scroll-snap-align: center;
   }
 
-  .heartButton {
+  .iconButton {
     width: 24px;
     height: 24px;
+
+    border: none;
+    background: transparent;
 
     position: absolute;
     right: 0;
     top: 0;
+    box-sizing: content-box;
+    ;
 
     &:hover {
       color: ${({theme})=> theme.COLORS.TOMATO_300};

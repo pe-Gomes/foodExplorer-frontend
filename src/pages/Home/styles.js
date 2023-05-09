@@ -74,7 +74,7 @@ export const Hero = styled.div`
 
 export const Carousel = styled.div`
   position: relative;
-  max-width: 1120px;
+  
 
   .left-arrow, .right-arrow {
     position: absolute;
@@ -85,9 +85,9 @@ export const Carousel = styled.div`
 
     border: none;
 
-    width: 278px;
+    width: 224px;
     
-    z-index: 999;
+    z-index: 1;
     
     background: ${({theme})=> theme.COLORS.GRADIENT_100};
 
@@ -113,28 +113,28 @@ export const Carousel = styled.div`
     left: auto;
     bottom: 0;
     text-align: right;
-    width: 224px;
     background: ${({theme})=> theme.COLORS.GRADIENT_100_REVERSE};
   }
 
-`;
-
-export const GalleryWrapper = styled.div`
-  overflow-x: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none; 
-
-  &::-webkit-scrollbar {
-    display: none;
+  .focus {
+    background: none;
+    pointer-events: none;
   }
 
 `;
 
 export const Gallery = styled.div`
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   display: flex;
   flex-flow: row nowrap;
   gap: 27px;
 
-
-
+  padding: 0 228px;
 `;

@@ -2,9 +2,11 @@ import { Container } from './styles';
 
 export function IconButton({icon: Icon, title, ...rest}) {
   return (
-    <Container>
-      {Icon && <Icon {...rest} />}
-      {title}
+    <Container type='button' {...rest} >
+      {Icon && <Icon />}
+      { title &&
+        <span>{title}</span>
+      }
     </Container>
   )
 };

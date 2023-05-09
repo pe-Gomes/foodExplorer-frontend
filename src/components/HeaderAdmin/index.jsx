@@ -1,13 +1,30 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
+
 import { Container, Brand, Search, ActionButtons } from "./styled";
+
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import { ReactComponent as SearchIcon } from '../../assets/Search.svg';
 import { ReactComponent as ExitIcon } from '../../assets/Exit.svg';
-import { ReactComponent as ReceiptIcon } from '../../assets/Receipt.svg';
 import { Input } from '../Input';
 import { Button } from '../Button';
 import { IconButton } from "../IconButton";
 
 export function HeaderAdmin() {
+  const navigate = useNavigate();
+  const { signOut, admin } = useAuth();
+
+  function handleSignOut() {
+    signOut();
+    navigate("/")
+    navigate("/");
+  }
+  
+
+  function handleNewProduct() {
+    navigate("/new")
+  }
+
   return (
     <Container>
        <Brand>
@@ -24,8 +41,8 @@ export function HeaderAdmin() {
       </Search>
       
       <ActionButtons>
-        <Button title="Novo prato" />
-        <IconButton icon={ExitIcon} className="exitIcon" />
+        <Button title="Novo prato" onClick={handleNewProduct} />
+        <IconButton icon={ExitIcon} className="exitIcon" onClick={handleSignOut} />
       </ActionButtons>
     </Container>
   )

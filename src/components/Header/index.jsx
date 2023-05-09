@@ -1,3 +1,5 @@
+import { useAuth } from "../../hooks/auth";
+
 import { Container, Brand, Search, ActionButtons } from "./styled";
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import { ReactComponent as SearchIcon } from '../../assets/Search.svg';
@@ -8,6 +10,12 @@ import { Button } from '../Button';
 import { IconButton } from "../IconButton";
 
 export function Header() {
+  const { signOut } = useAuth();
+
+  function handleSignOut() {
+    signOut();
+  }
+
   return (
     <Container>
        <Brand>
@@ -24,7 +32,7 @@ export function Header() {
       
       <ActionButtons>
         <Button title="Pedidos (0)" icon={ReceiptIcon} />
-        <IconButton icon={ExitIcon} className="exitIcon" />
+        <IconButton icon={ExitIcon} className="exitIcon" onClick={handleSignOut} />
       </ActionButtons>
     </Container>
   )
