@@ -1,5 +1,5 @@
-import { Container, Brand } from "./styles";
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import { Container, Brand } from './styles'
+import { ReactComponent as Logo } from '../../assets/logo.svg'
 
 export function Footer() {
   return (

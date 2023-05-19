@@ -1,7 +1,7 @@
-import { Container } from './styles';
+import { Container } from './styles'
 
-export function Input({ icon:Icon, ...rest }) {
-  return(
+export function Input({ icon: Icon, ...rest }) {
+  return (
     <Container>
       <input {...rest} />
       {Icon && <Icon {...rest} />}

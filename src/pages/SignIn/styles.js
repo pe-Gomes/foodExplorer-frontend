@@ -1,16 +1,26 @@
-import styled from 'styled-components' ;
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
-  
+  min-height: 100vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 300px;
+  gap: calc(max(18.75em, 15em) - 1em);
   margin: 0 auto;
-`;
 
+  @media screen and (max-width: 1200px) {
+    & {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 56px;
+      padding: 74px 0;
+    }
+  }
+`
 
 export const Brand = styled.div`
   display: flex;
@@ -19,18 +29,26 @@ export const Brand = styled.div`
   gap: 19px;
 
   > h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 42px;
-    font-weight: 700;
-    
+    ${({ theme }) => theme.FONTS_ROBOTO_GIANT_BOLD};
+    font-size: clamp(1rem, 2.2rem, 3rem);
   }
-`;
 
-export const Form = styled.div`
-  min-width: 476px;
+  /* @media screen and (max-width: 1200px){
+    & > h1 {
+        font-size: 34px;
+      }
+  } */
+`
+
+export const Form = styled.form`
+  @media screen and (min-width: 1200px) {
+    & {
+      min-width: 476px;
+    }
+  }
 
   padding: 64px;
-  background-color: ${({theme})=> theme.COLORS.DARK_700};
+  background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
   > h1 {
     font-family: 'Poppins', sans-serif;
@@ -43,7 +61,7 @@ export const Form = styled.div`
   > p {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    color: ${({theme})=> theme.COLORS.LIGHT_400};
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
     margin: 32px 0 8px;
   }
@@ -51,15 +69,14 @@ export const Form = styled.div`
   > button {
     margin: 32px 0;
   }
-  
-  > div {
 
+  > div {
     text-align: center;
 
     a {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    line-height: 24px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      line-height: 24px;
     }
   }
-`;
+`

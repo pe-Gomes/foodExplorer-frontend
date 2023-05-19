@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export const Container = styled.form`
+export const Container = styled.div`
   width: 100%;
 
-  background-color: ${({theme})=> theme.COLORS.DARK_900};
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
   display: flex;
-  
+
   align-items: center;
 
   input {
@@ -18,14 +18,13 @@ export const Container = styled.form`
     padding: 16px 14px;
     background: transparent;
 
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 160%;
-    color: ${({theme})=> theme.COLORS.LIGHT_400};
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
-    &::placeholder{
-      color: ${({theme})=> theme.COLORS.LIGHT_500};
+    &::placeholder {
+      color: ${({ theme }) => theme.COLORS.LIGHT_500};
     }
-
   }
-`;
+`

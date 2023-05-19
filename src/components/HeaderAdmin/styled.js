@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
-  grid-area: "header";
-  
+  grid-area: 'header';
+
   width: 100%;
   height: 104px;
 
@@ -12,7 +12,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
 
-`;
+  .disabled {
+    display: none;
+  }
+`
 
 export const Brand = styled.div`
   min-width: 198px;
@@ -25,11 +28,11 @@ export const Brand = styled.div`
   grid-template-columns: 30px auto;
   grid-template-rows: 30px auto;
   grid-template-areas:
-    "logo" "text"
-    "admin";
+    'logo' 'text'
+    'admin';
 
   > svg {
-    grid-area: "logo";
+    grid-area: 'logo';
 
     width: 30px;
     height: 30px;
@@ -38,31 +41,31 @@ export const Brand = styled.div`
   > h1 {
     margin-left: 10px;
 
-    grid-area: "text";
+    grid-area: 'text';
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
     font-weight: 700;
   }
   span {
-    grid-area: "admin";
+    grid-area: 'admin';
     grid-column: 2;
-    
+
     font-family: 'Roboto', sans-serif;
     line-height: 160%;
     font-size: 12px;
-    color: ${({theme})=> theme.COLORS.CAKE_200};
+    color: ${({ theme }) => theme.COLORS.CAKE_200};
     text-align: end;
-
   }
-`;
+`
 
 export const Search = styled.div`
   height: 48px;
   width: 100%;
   position: relative;
- 
+
   input {
     padding-left: 138px !important;
+    outline: none !important;
   }
 
   svg {
@@ -72,24 +75,69 @@ export const Search = styled.div`
     position: absolute;
     left: 102px;
 
-    transition: transform .5s;
-    
+    transition: transform 0.5s;
+
     path {
-      stroke: ${({theme})=> theme.COLORS.LIGHT_400};
+      stroke: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
   }
 
   input:focus ~ svg {
     transform: translateX(-12px);
-    transition: transform .5s;
+    transition: transform 0.5s;
   }
-`;
+`
 
-export const ActionButtons = styled.div`
+export const SearchResults = styled.ul`
+  background-color: ${({ theme }) => theme.COLORS.DARK_800};
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  max-height: 324px;
+  overflow-y: auto;
+
+  border-radius: 0 0 8px 8px;
+  padding: 13px 50px;
+  box-shadow: 0px 5px 5px ${({ theme }) => theme.COLORS.DARK_800};
+
+  li {
+    list-style-type: none;
     display: flex;
     align-items: center;
+    gap: 16px;
+  }
 
-    > button:first-child {
+  li + li {
+    margin-top: 5px;
+  }
+
+  .category {
+    border-bottom: 2px dotted ${({ theme }) => theme.COLORS.CAKE_100};
+    margin-bottom: 5px;
+    width: fit-content;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  > span {
+    display: block;
+    margin-bottom: 5px;
+    ${({ theme }) => theme.FONTS.ROBOTO_SMALLEST_REGULAR};
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+  }
+`
+
+export const ActionButtons = styled.div`
+  display: flex;
+  align-items: center;
+
+  > button:first-child {
     margin: 0 32px;
     width: 216px;
   }
@@ -99,14 +147,13 @@ export const ActionButtons = styled.div`
     height: 32px;
 
     svg > path {
-      stroke: ${({theme})=> theme.COLORS.LIGHT_100};
+      stroke: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
 
     &:hover {
       > path {
-        stroke: ${({theme})=> theme.COLORS.LIGHT_400};
+        stroke: ${({ theme }) => theme.COLORS.LIGHT_400};
       }
     }
   }
-  
-`;
+`

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -11,10 +11,10 @@ export const Container = styled.div`
     margin-left: 33px;
     height: 48px;
 
-    ${({theme})=> theme.FONTS.POPPINS_100_MEDIUM};
-    color: ${({theme})=> theme.COLORS.LIGHT_100};
+    ${({ theme }) => theme.FONTS.POPPINS_100_MEDIUM};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
   }
-`;
+`
 
 export const AddRemove = styled.div`
   display: flex;
@@ -23,10 +23,11 @@ export const AddRemove = styled.div`
   > button {
     background: transparent;
     border: none;
+    outline: none !important;
     width: 18px;
     height: 18px;
 
-    animation: transform .4s;
+    animation: transform 0.4s;
 
     svg {
       font-size: 18px;
@@ -37,14 +38,14 @@ export const AddRemove = styled.div`
     &:hover {
       background-color: transparent;
       transform: scale(1.15);
-      animation: transform .5s;
+      animation: transform 0.5s;
     }
   }
-  
+
   span {
-  margin: 0 14px;
-  
-  ${({theme})=> theme.FONTS.ROBOTO_BIG_BOLD};
-  color: ${({theme})=> theme.COLORS.LIGHT_100};
-}
-`;
+    margin: 0 14px;
+
+    ${({ theme }) => theme.FONTS.ROBOTO_BIG_BOLD};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  }
+`
