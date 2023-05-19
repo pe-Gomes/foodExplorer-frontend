@@ -49,10 +49,6 @@ export default createGlobalStyle`
   input:focus, textarea:focus, select:focus {
     outline: 1px solid ${({ theme }) => theme.COLORS.CAKE_100};
   }
-
-  button:focus {
-    outline: .5px solid ${({ theme }) => theme.COLORS.TOMATO_300};
-  }
   
   input[type=number] {
     appearance: none;

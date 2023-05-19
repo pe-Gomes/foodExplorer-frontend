@@ -33,7 +33,7 @@ export const Container = styled.div`
   > button {
     background: transparent;
     border: none;
-    outline: none;
+    outline: none !important;
 
     > svg {
       color: ${({ theme }) => theme.COLORS.LIGHT_100};

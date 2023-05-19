@@ -65,7 +65,7 @@ export function New() {
   }
 
   async function handleCreateProduct() {
-    if (!title || !tags || !description || !categoryValue || !price) {
+    if (!title || !tags || !description || !price) {
       return alert(
         'Preencha os campos do título, ingredientes, preço e categoria para cadastrar o produto.',
       )
@@ -84,7 +84,7 @@ export function New() {
         description,
         price,
         ingredients: tags,
-        category: categoryValue,
+        category: category.value,
         image: response.data.image,
       })
     } else {
@@ -93,7 +93,7 @@ export function New() {
         description,
         price,
         ingredients: tags,
-        category: categoryValue,
+        category: category.value,
       })
     }
 
@@ -147,9 +147,7 @@ export function New() {
                           as={Fragment}
                         >
                           <li>
-                            {category.name == option.name ? (
-                              <CheckIcon />
-                            ) : null}
+                            {category.name === option.name && <CheckIcon />}
                             {option.name}
                           </li>
                         </Listbox.Option>

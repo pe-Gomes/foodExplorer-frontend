@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 import { useEffect, useState } from 'react'
 import { useShop } from '../../hooks/shopContext'
 
@@ -16,7 +17,7 @@ export function AddProductHome({
   children,
 }) {
   const [number, setNumber] = useState(1)
-  const { updateItemsCart, displayNumberInCart } = useShop()
+  const { updateItemsCart } = useShop()
 
   function handleCartCallback(e, ItemId) {
     e.preventDefault()
@@ -28,9 +29,8 @@ export function AddProductHome({
   }
 
   function handleRemoveItem() {
-    let count
-    if (number == 1) {
-      count = 1
+    if (number === 0) {
+      setNumber(0)
     } else {
       setNumber(number - 1)
     }
@@ -39,27 +39,20 @@ export function AddProductHome({
   useEffect(() => {}, [])
 
   return (
-    <Container key={`${ItemId}_add_remove_root`}>
-      <AddRemove key={`${ItemId}_add_remove`}>
-        <button key={`${ItemId}_add_remove_button_minus`}>
-          <MinusIcon
-            onClick={handleRemoveItem}
-            key={`${ItemId}_add_remove_icon_minus`}
-          />
+    <Container key={`${ItemId}_add_remove_container`}>
+      <AddRemove>
+        <button>
+          <MinusIcon onClick={handleRemoveItem} />
         </button>
-        <span key={`${ItemId}_add_remove_numbers`}>{number}</span>
-        <button
-          onClick={handleAddItem}
-          key={`${ItemId}_add_remove_button_plus`}
-        >
-          <PlusIcon key={`${ItemId}_add_remove_icon_plus`} />
+        <span>{number}</span>
+        <button onClick={handleAddItem}>
+          <PlusIcon />
         </button>
       </AddRemove>
       <Button
         title={title}
         onClick={(e) => handleCartCallback(e, ItemId)}
         Itemid={ItemId}
-        key={`${ItemId}_add_remove_button_update_numbers`}
       />
       {children}
     </Container>

@@ -229,6 +229,10 @@ export const ThirdRow = styled.div`
     justify-content: flex-end;
   }
 
+  textarea {
+    ${({ theme }) => theme.FONTS.ROBOTO_SMALL_REGULAR}
+  }
+
   button {
     margin-top: 32px;
 

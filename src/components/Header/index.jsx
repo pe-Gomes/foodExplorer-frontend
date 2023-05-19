@@ -15,7 +15,6 @@ import { ReactComponent as Logo } from '../../assets/logo.svg'
 import { ReactComponent as SearchIcon } from '../../assets/Search.svg'
 import { ReactComponent as ExitIcon } from '../../assets/Exit.svg'
 import { ReactComponent as ReceiptIcon } from '../../assets/Receipt.svg'
-import { ReactComponent as MenuIcon } from '../../assets/Menu.svg'
 import { Input } from '../Input'
 import { Button } from '../Button'
 import { IconButton } from '../IconButton'
@@ -26,9 +25,7 @@ export function Header() {
   const { numberOfItemsOnCart } = useShop()
 
   const [search, setSearch] = useState('')
-  const [mealSearch, setMealSearch] = useState([])
-  const [dessertSearch, setDessertSearch] = useState([])
-  const [drinkSearch, setDrinkSearch] = useState([])
+  const [searchData, setSearchData] = useState([])
 
   function handleSignOut() {
     signOut()
@@ -44,11 +41,8 @@ export function Header() {
   useEffect(() => {
     async function fetchSearchResults() {
       const res = await api.get(`/products?search=${search}`)
-      setMealSearch(res.data.meal)
-      setDessertSearch(res.data.dessert)
-      setDrinkSearch(res.data.drink)
+      setSearchData(res.data)
     }
-
     fetchSearchResults()
   }, [search])
 
@@ -67,66 +61,17 @@ export function Header() {
         />
         {search && (
           <SearchResults>
-            <li className="category">Refeições</li>
-            {mealSearch ? null : <span>Sem resultados.</span>}
-            {mealSearch &&
-              mealSearch.map((result) => (
-                <>
-                  <li key={`${result.id}_list`}>
-                    <img
-                      src={`${api.defaults.baseURL}/files/${result.image}`}
-                      alt={`Foto de ${result.title}`}
-                      key={`${result.id}_image`}
-                    />
-                    <a
-                      onClick={(e) => handleSearchLink(e, result.id)}
-                      key={`${result.id}_anchor`}
-                    >
-                      {result.title}
-                    </a>
-                  </li>
-                </>
-              ))}
-
-            <li className="category">Sobremesas</li>
-            {dessertSearch ? null : <span>Sem resultados.</span>}
-            {dessertSearch &&
-              dessertSearch.map((result) => (
-                <>
-                  <li key={`${result.id}_list`}>
-                    <img
-                      src={`${api.defaults.baseURL}/files/${result.image}`}
-                      alt={`Foto de ${result.title}`}
-                      key={`${result.id}_image`}
-                    />
-                    <a
-                      onClick={(e) => handleSearchLink(e, result.id)}
-                      key={`${result.id}_anchor`}
-                    >
-                      {result.title}
-                    </a>
-                  </li>
-                </>
-              ))}
-            <li className="category">Bebidas</li>
-            {drinkSearch ? null : <span>Sem resultados.</span>}
-            {drinkSearch &&
-              drinkSearch.map((result) => (
-                <>
-                  <li key={`${result.id}_list`}>
-                    <img
-                      src={`${api.defaults.baseURL}/files/${result.image}`}
-                      alt={`Foto de ${result.title}`}
-                      key={`${result.id}_image`}
-                    />
-                    <a
-                      onClick={(e) => handleSearchLink(e, result.id)}
-                      key={`${result.id}_anchor`}
-                    >
-                      {result.title}
-                    </a>
-                  </li>
-                </>
+            {searchData &&
+              searchData.map((result) => (
+                <li key={`${result.id}_list`}>
+                  <img
+                    src={`${api.defaults.baseURL}/files/${result.image}`}
+                    alt={`Foto de ${result.title}`}
+                  />
+                  <a onClick={(e) => handleSearchLink(e, result.id)}>
+                    {result.title}
+                  </a>
+                </li>
               ))}
           </SearchResults>
         )}
@@ -135,7 +80,7 @@ export function Header() {
       <ActionButtons>
         <Button
           title={
-            numberOfItemsOnCart == 0
+            numberOfItemsOnCart === 0
               ? 'Pedidos (0)'
               : `Pedidos (${numberOfItemsOnCart})`
           }

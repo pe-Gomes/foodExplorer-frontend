@@ -52,6 +52,10 @@ export function Edit() {
   }
 
   function handleNewTag() {
+    if (!newTag) {
+      alert('Adicione um ingrediente para depois cadastrá-lo')
+      return
+    }
     setTags((prevState) => [...prevState, newTag])
     setNewTag('')
   }
@@ -111,7 +115,7 @@ export function Edit() {
       let inicialCategory = {}
 
       for (let i = 0; i < options.length; i++) {
-        if (options[i].value == response.data.category[0].name) {
+        if (options[i].value === response.data.category[0].name) {
           inicialCategory = options[i]
         }
       }
@@ -122,7 +126,7 @@ export function Edit() {
     }
 
     fetchProduct()
-  }, [])
+  }, [params.id])
 
   return (
     <Container>
@@ -174,9 +178,7 @@ export function Edit() {
                           as={Fragment}
                         >
                           <li>
-                            {category.name == option.name ? (
-                              <CheckIcon />
-                            ) : null}
+                            {category.name === option.name && <CheckIcon />}
                             {option.name}
                           </li>
                         </Listbox.Option>
@@ -203,6 +205,7 @@ export function Edit() {
                 <TagButton
                   isNew
                   placeholder="Adicionar"
+                  value={newTag}
                   onChange={(e) => setNewTag(e.target.value)}
                   onClick={handleNewTag}
                 />

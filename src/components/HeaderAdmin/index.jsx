@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/auth'
 import { api } from '../../services/api'
 
@@ -24,9 +24,7 @@ export function HeaderAdmin() {
   const { signOut } = useAuth()
 
   const [search, setSearch] = useState('')
-  const [mealSearch, setMealSearch] = useState([])
-  const [dessertSearch, setDessertSearch] = useState([])
-  const [drinkSearch, setDrinkSearch] = useState([])
+  const [searchData, setSearchData] = useState([])
 
   function handleSignOut() {
     signOut()
@@ -41,18 +39,14 @@ export function HeaderAdmin() {
     e.preventDefault()
     const linkState = navigate(`/details/${id}`)
     setSearch('')
-    setDessertSearch([])
-    setDrinkSearch([])
-    setMealSearch([])
+    setSearchData([])
     return linkState
   }
 
   useEffect(() => {
     async function fetchSearchResults() {
       const res = await api.get(`/products?search=${search}`)
-      setMealSearch(res.data.meal)
-      setDessertSearch(res.data.dessert)
-      setDrinkSearch(res.data.drink)
+      setSearchData(res.data)
     }
     fetchSearchResults()
   }, [search])
@@ -73,43 +67,8 @@ export function HeaderAdmin() {
             />
             {search && (
               <SearchResults>
-                <li className="category">Refeições</li>
-                {mealSearch ? null : <span>Sem resultados.</span>}
-                {mealSearch &&
-                  mealSearch.map((result) => (
-                    <>
-                      <li>
-                        <img
-                          src={`${api.defaults.baseURL}/files/${result.image}`}
-                          alt={`Foto de ${result.title}`}
-                        />
-                        <a onClick={(e) => handleSearchLink(e, result.id)}>
-                          {result.title}
-                        </a>
-                      </li>
-                    </>
-                  ))}
-
-                <li className="category">Sobremesas</li>
-                {dessertSearch ? null : <span>Sem resultados.</span>}
-                {dessertSearch &&
-                  dessertSearch.map((result) => (
-                    <>
-                      <li>
-                        <img
-                          src={`${api.defaults.baseURL}/files/${result.image}`}
-                          alt={`Foto de ${result.title}`}
-                        />
-                        <a onClick={(e) => handleSearchLink(e, result.id)}>
-                          {result.title}
-                        </a>
-                      </li>
-                    </>
-                  ))}
-                <li className="category">Bebidas</li>
-                {drinkSearch ? null : <span>Sem resultados.</span>}
-                {drinkSearch &&
-                  drinkSearch.map((result) => (
+                {searchData &&
+                  searchData.map((result) => (
                     <>
                       <li>
                         <img
@@ -139,45 +98,10 @@ export function HeaderAdmin() {
           placeholder="Busque por pratos ou ingredientes"
           onChange={(e) => setSearch(e.target.value)}
         />
-        {search && (
+        {search && searchData && (
           <SearchResults>
-            <li className="category">Refeições</li>
-            {mealSearch ? null : <span>Sem resultados.</span>}
-            {mealSearch &&
-              mealSearch.map((result) => (
-                <>
-                  <li>
-                    <img
-                      src={`${api.defaults.baseURL}/files/${result.image}`}
-                      alt={`Foto de ${result.title}`}
-                    />
-                    <a onClick={(e) => handleSearchLink(e, result.id)}>
-                      {result.title}
-                    </a>
-                  </li>
-                </>
-              ))}
-
-            <li className="category">Sobremesas</li>
-            {dessertSearch ? null : <span>Sem resultados.</span>}
-            {dessertSearch &&
-              dessertSearch.map((result) => (
-                <>
-                  <li>
-                    <img
-                      src={`${api.defaults.baseURL}/files/${result.image}`}
-                      alt={`Foto de ${result.title}`}
-                    />
-                    <a onClick={(e) => handleSearchLink(e, result.id)}>
-                      {result.title}
-                    </a>
-                  </li>
-                </>
-              ))}
-            <li className="category">Bebidas</li>
-            {drinkSearch ? null : <span>Sem resultados.</span>}
-            {drinkSearch &&
-              drinkSearch.map((result) => (
+            {searchData &&
+              searchData.map((result) => (
                 <>
                   <li>
                     <img

@@ -216,6 +216,10 @@ export const TagsWrapper = styled.div`
 export const ThirdRow = styled.div`
   margin: 32px 0;
 
+  textarea {
+    ${({ theme }) => theme.FONTS.ROBOTO_SMALL_REGULAR}
+  }
+
   > div {
     display: flex;
     gap: 32px;
