@@ -1,46 +1,40 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  width: 100%;
-
-  display: grid;
-  grid-template-rows: 104px auto 78px;
-  grid-template-areas:
-    'header'
-    'content'
-    'footer';
 
   > main {
-    grid-area: 'content';
-
+    width: 90%;
     margin: 0 auto;
-    max-width: 1120px;
-
+    flex-grow: 1;
     h2 {
       margin-bottom: 23px;
       ${({ theme }) => theme.FONTS.POPPINS_400_MEDIUM};
+      font-size: clamp(1rem, 4vw + 0.5rem, 2rem);
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
     }
   }
 
-  > footer {
-    grid-area: 'footer';
+  @media (min-width: 1150px) {
+    > main {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
   }
 `
 
 export const Hero = styled.div`
-  margin: 164px 0 62px;
-
   position: relative;
 
   .styledBg {
-    height: 260px;
-    width: 1120px;
-
     border-radius: 8px;
     background: ${({ theme }) => theme.COLORS.GRADIENT_200};
-    padding-right: 100px;
+    height: 120px;
+
+    padding: 0 12px 0 12em;
+    margin: 3.5em 0;
 
     display: flex;
     flex-direction: column;
@@ -52,186 +46,140 @@ export const Hero = styled.div`
   h1,
   p {
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    text-align: right;
   }
 
   h1 {
     ${({ theme }) => theme.FONTS.POPPINS_500_MEDIUM};
+    font-size: clamp(0.5rem, 1vw + 0.7rem, 2.5rem);
   }
 
   p {
     ${({ theme }) => theme.FONTS.ROBOTO_SMALL_REGULAR};
+    font-size: clamp(0.1rem, 1vw + 0.3rem, 1rem);
   }
 
   > img {
-    width: 656px;
-    height: 412px;
-
     position: absolute;
     bottom: 0;
-    left: -70px;
+    left: -10px;
+    pointer-events: none;
+
+    width: 191px;
+    height: 149px;
+  }
+
+  @media (min-width: 524px) {
+    > img {
+      width: 21em;
+      height: 13em;
+    }
+  }
+
+  @media (min-width: 1150px) {
+    margin: 164px 0 62px;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .styledBg {
+      height: 17em;
+      width: 100%;
+      padding-right: 100px;
+    }
+
+    > img {
+      width: 41em;
+      height: 25em;
+    }
   }
 `
 
 export const Carousel = styled.div`
   position: relative;
 
-  .left-arrow,
-  .right-arrow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: auto;
-    bottom: 0;
-
-    border: none;
-    outline: none !important;
-
-    width: 224px;
-
-    z-index: 1;
-
-    background: ${({ theme }) => theme.COLORS.GRADIENT_100};
-
-    text-align: left;
-    svg {
-      height: 28px;
-      width: 15px;
-
-      margin: 0 28px;
-    }
-
-    &:hover > svg {
-      transform: scale(1.1);
-      path {
-        fill: ${({ theme }) => theme.COLORS.LIGHT_400};
-      }
-    }
-  }
-
-  .right-arrow {
-    top: 0;
-    right: 0;
-    left: auto;
-    bottom: 0;
-    text-align: right;
-    background: ${({ theme }) => theme.COLORS.GRADIENT_100_REVERSE};
+  .web {
+    display: none;
   }
 
   .focus {
     background: none;
     pointer-events: none;
   }
+
+  @media (min-width: 1150px) {
+    .web {
+      display: block;
+    }
+
+    .left-arrow,
+    .right-arrow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: auto;
+      bottom: 0;
+
+      border: none;
+      outline: none !important;
+
+      width: 224px;
+
+      z-index: 1;
+
+      background: ${({ theme }) => theme.COLORS.GRADIENT_100};
+
+      text-align: left;
+      svg {
+        height: 28px;
+        width: 15px;
+
+        margin: 0 28px;
+      }
+
+      &:hover > svg {
+        transform: scale(1.1);
+        path {
+          fill: ${({ theme }) => theme.COLORS.LIGHT_400};
+        }
+      }
+    }
+
+    .right-arrow {
+      top: 0;
+      right: 0;
+      left: auto;
+      bottom: 0;
+      text-align: right;
+      background: ${({ theme }) => theme.COLORS.GRADIENT_100_REVERSE};
+    }
+  }
 `
 
 export const Gallery = styled.div`
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-
+  overflow-x: auto;
   &::-webkit-scrollbar {
     display: none;
   }
 
   display: flex;
-  flex-flow: row nowrap;
-  gap: 27px;
+  gap: ${({ isAdmin }) => (isAdmin ? '4em' : '0')};
 
-  padding: 0 228px;
-`
+  @media (min-width: 1150px) {
+    width: 100%;
+    margin: 0;
 
-export const Products = styled.div`
-  height: 462px;
-  min-width: 258px;
-
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-
-  > a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-
-    ${({ theme }) => theme.FONTS.POPPINS_300_BOLD};
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-  }
-
-  > p {
-    ${({ theme }) => theme.FONTS.ROBOTO_SMALLER_REGULAR};
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    text-align: center;
-    height: 44px;
-  }
-
-  > span {
-    ${({ theme }) => theme.FONTS.ROBOTO_BIGGEST_REGULAR};
-    color: ${({ theme }) => theme.COLORS.CAKE_200};
-  }
-
-  img {
-    height: 176px;
-    width: 176px;
-    margin-bottom: 15px;
-    pointer-events: none;
-
-    scroll-snap-align: center;
-  }
-
-  .iconButton {
-    width: 24px;
-    height: 24px;
-
-    border: none;
-    outline: none;
-    background: transparent;
-
-    position: absolute;
-    right: 0;
-    top: 0;
-    box-sizing: content-box;
-
-    color: ${({ theme }) => theme.COLORS.WHITE_100};
-  }
-
-  .heartIcon {
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    &:hover {
-      color: ${({ theme }) => theme.COLORS.TOMATO_300};
-    }
-  }
-
-  .isActive {
-    color: ${({ theme }) => theme.COLORS.TOMATO_300};
-  }
-
-  .addProduct {
-    button {
-      width: 92px;
-    }
-  }
-
-  > div {
-    padding: 0 48px;
-  }
-`
-
-export const AddProduct = styled.div`
-  width: 100%;
-  height: 48px;
-
-  display: flex;
-  align-items: center;
-
-  > button {
-    margin-left: 33px;
-    height: 48px;
-
-    ${({ theme }) => theme.FONTS.POPPINS_100_MEDIUM};
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+    flex-flow: row nowrap;
+    gap: 27px;
+    padding: 0 228px;
   }
 `
 

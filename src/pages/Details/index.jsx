@@ -17,7 +17,6 @@ import { Button } from '../../components/Button'
 export function Details({
   handleRemoveItem,
   handleAddItem,
-  ItemId,
   handleCartCallback,
 }) {
   const { admin } = useAuth()
@@ -47,45 +46,50 @@ export function Details({
       setData(response.data)
     }
     fetchProduct()
-  }, [])
+  }, [params.id])
 
   return (
     <Container>
       {admin ? <HeaderAdmin /> : <Header />}
+      <div className="return">
+        <IconButton icon={LeftArrow} title="voltar" onClick={handleBack} />
+      </div>
       <main>
-        <header>
-          <IconButton icon={LeftArrow} title="voltar" onClick={handleBack} />
-        </header>
-        <div>
-          {data && (
-            <>
+        {data && (
+          <>
+            <div className="image">
               <img
                 src={`${api.defaults.baseURL}/files/${data.image}`}
                 alt={`Uma foto de(a) ${data.title}`}
               />
-              <Information>
-                <h1>{data.title}</h1>
-                <p>{data.description}</p>
-                <div className="tags">
-                  {ingredients.map((ingredient) => (
-                    <Tags title={ingredient.name} className="tags" />
-                  ))}
-                </div>
-                {admin ? (
-                  <Button title="Editar prato" onClick={handleEdit} />
-                ) : (
-                  <AddProduct
-                    title={`incluir ∙ R$ ${price}`}
-                    handleRemoveItem={handleRemoveItem}
-                    handleAddItem={handleAddItem}
-                    handleCartCallback={handleCartCallback}
-                    ItemId={data.id}
+            </div>
+            <Information>
+              <h1>{data.title}</h1>
+              <p>{data.description}</p>
+              <div className="tags-wrapper">
+                {ingredients.map((ingredient) => (
+                  <Tags
+                    key={ingredient.id}
+                    title={ingredient.name}
+                    className="tags"
                   />
-                )}
-              </Information>
-            </>
-          )}
-        </div>
+                ))}
+              </div>
+              {admin ? (
+                <Button title="Editar prato" onClick={handleEdit} />
+              ) : (
+                <AddProduct
+                  className="addRemove"
+                  title={`incluir ∙ R$ ${price}`}
+                  handleRemoveItem={handleRemoveItem}
+                  handleAddItem={handleAddItem}
+                  handleCartCallback={handleCartCallback}
+                  ItemId={data.id}
+                />
+              )}
+            </Information>
+          </>
+        )}
       </main>
       <Footer />
     </Container>

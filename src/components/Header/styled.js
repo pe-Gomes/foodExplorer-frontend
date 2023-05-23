@@ -1,16 +1,47 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  grid-area: 'header';
-
-  width: 100%;
-  height: 104px;
-
-  padding: 24px 123px;
-
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+
+  padding: 56px 28px 28px;
+
+  .numberOfItems {
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: -50%;
+    right: -50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+    border-radius: 50%;
+    padding: 50%;
+
+    ${({ theme }) => theme.FONTS.POPPINS_100_MEDIUM}
+  }
+
+  .web {
+    display: none;
+  }
+
+  @media (min-width: 1150px) {
+    height: 104px;
+    padding: 24px 123px;
+
+    .mobile {
+      display: none;
+    }
+    .web {
+      display: flex;
+    }
+  }
 `
 
 export const Brand = styled.div`
@@ -20,18 +51,18 @@ export const Brand = styled.div`
 
   position: relative;
 
-  min-width: 198px;
-  margin-right: 32px;
-
   > svg {
     width: 30px;
     height: 30px;
   }
 
   > h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
+    ${({ theme }) => theme.FONTS.ROBOTO_BIGGER_BOLD}
+  }
+
+  @media (min-width: 1150px) {
+    min-width: 198px;
+    margin-right: 32px;
   }
 `
 
@@ -111,8 +142,10 @@ export const SearchResults = styled.ul`
 `
 
 export const ActionButtons = styled.div`
-  display: flex;
-  align-items: center;
+  position: relative;
+
+  .productsIcon {
+  }
 
   > button:first-child {
     margin: 0 32px;
@@ -132,5 +165,10 @@ export const ActionButtons = styled.div`
         stroke: ${({ theme }) => theme.COLORS.LIGHT_400};
       }
     }
+  }
+
+  @media (min-width: 1150px) {
+    display: flex;
+    align-items: center;
   }
 `

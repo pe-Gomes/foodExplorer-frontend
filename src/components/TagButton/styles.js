@@ -13,8 +13,7 @@ export const Container = styled.div`
 
   > input {
     width: 100%;
-    height: 32px;
-
+    height: 2em;
     outline: none !important;
 
     padding: 8px 16px;
@@ -39,7 +38,7 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
       width: 10px;
       height: 10px;
-      margin-right: 16px;
+      margin-right: 0.8em;
 
       path {
         fill: ${({ theme, isNew }) =>

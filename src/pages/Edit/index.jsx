@@ -132,9 +132,9 @@ export function Edit() {
     <Container>
       <HeaderAdmin />
       <main>
-        <header>
+        <div className="return">
           <IconButton icon={LeftArrow} title="voltar" onClick={handleBack} />
-        </header>
+        </div>
         <h1>Editar prato</h1>
         <Form>
           <FirstRow>

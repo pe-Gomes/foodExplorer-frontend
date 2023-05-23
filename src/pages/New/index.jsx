@@ -105,9 +105,9 @@ export function New() {
     <Container>
       <HeaderAdmin />
       <main>
-        <header>
+        <div className="return">
           <IconButton icon={LeftArrow} title="voltar" onClick={handleBack} />
-        </header>
+        </div>
         <h1>Adicionar prato</h1>
         <Form>
           <FirstRow>

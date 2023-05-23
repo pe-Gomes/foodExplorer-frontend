@@ -18,6 +18,7 @@ import { ReactComponent as MenuIcon } from '../../assets/Menu.svg'
 import { Input } from '../Input'
 import { Button } from '../Button'
 import { IconButton } from '../IconButton'
+import { MobileMenu } from '../MobileMenu'
 
 export function HeaderAdmin() {
   const navigate = useNavigate()
@@ -25,6 +26,7 @@ export function HeaderAdmin() {
 
   const [search, setSearch] = useState('')
   const [searchData, setSearchData] = useState([])
+  const [visible, setVisible] = useState(false)
 
   function handleSignOut() {
     signOut()
@@ -52,58 +54,31 @@ export function HeaderAdmin() {
   }, [search])
 
   return (
-    <Container>
-      <div className="menu disabled">
-        <button>
-          <MenuIcon />
-        </button>
-        <div className="options disabled">
-          <Search>
-            <Input
-              icon={SearchIcon}
-              type="text"
-              placeholder="Busque por pratos ou ingredientes"
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            {search && (
-              <SearchResults>
-                {searchData &&
-                  searchData.map((result) => (
-                    <>
-                      <li>
-                        <img
-                          src={`${api.defaults.baseURL}/files/${result.image}`}
-                          alt={`Foto de ${result.title}`}
-                        />
-                        <a onClick={(e) => handleSearchLink(e, result.id)}>
-                          {result.title}
-                        </a>
-                      </li>
-                    </>
-                  ))}
-              </SearchResults>
-            )}
-          </Search>
-        </div>
-      </div>
-      <Brand>
-        <Logo />
-        <h1>food explorer</h1>
-        <span>admin</span>
-      </Brand>
-      <Search>
-        <Input
-          icon={SearchIcon}
-          type="text"
-          placeholder="Busque por pratos ou ingredientes"
-          onChange={(e) => setSearch(e.target.value)}
+    <>
+      <MobileMenu isActive={visible} setVisible={setVisible} />
+      <Container>
+        <IconButton
+          icon={MenuIcon}
+          className="mobile menu"
+          onClick={() => setVisible(true)}
         />
-        {search && searchData && (
-          <SearchResults>
-            {searchData &&
-              searchData.map((result) => (
-                <>
-                  <li>
+        <Brand>
+          <Logo />
+          <h1>food explorer</h1>
+          <span>admin</span>
+        </Brand>
+        <Search className="web">
+          <Input
+            icon={SearchIcon}
+            type="text"
+            placeholder="Busque por pratos ou ingredientes"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          {search && searchData && (
+            <SearchResults>
+              {searchData &&
+                searchData.map((result) => (
+                  <li key={result.id}>
                     <img
                       src={`${api.defaults.baseURL}/files/${result.image}`}
                       alt={`Foto de ${result.title}`}
@@ -112,20 +87,24 @@ export function HeaderAdmin() {
                       {result.title}
                     </a>
                   </li>
-                </>
-              ))}
-          </SearchResults>
-        )}
-      </Search>
+                ))}
+            </SearchResults>
+          )}
+        </Search>
 
-      <ActionButtons>
-        <Button title="Novo prato" onClick={handleNewProduct} />
-        <IconButton
-          icon={ExitIcon}
-          className="exitIcon"
-          onClick={handleSignOut}
-        />
-      </ActionButtons>
-    </Container>
+        <ActionButtons className="web">
+          <Button
+            title="Novo prato"
+            onClick={handleNewProduct}
+            className="web"
+          />
+          <IconButton
+            icon={ExitIcon}
+            className="exitIcon"
+            onClick={handleSignOut}
+          />
+        </ActionButtons>
+      </Container>
+    </>
   )
 }

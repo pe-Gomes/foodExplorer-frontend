@@ -1,53 +1,60 @@
-import { useEffect, useRef } from 'react'
-import { Container } from './styles'
 import { useAuth } from '../../hooks/auth'
-
 import { Link } from 'react-router-dom'
+import { api } from '../../services/api'
 
-import { AddProductHome } from '../../components/AddProductHome'
+import { Container } from './styles'
+
+import { AddProductHome } from '../AddProductHome'
 import { ReactComponent as HeartIcon } from '../../assets/Heart.svg'
 import { ReactComponent as PencilIcon } from '../../assets/Pencil.svg'
+import { ReactComponent as FilledHeartIcon } from '../../assets/FilledHeart.svg'
 
 export function Product({
-  src: Src,
-  productName,
-  productDescription,
-  numberOfProducts,
-  productPrice,
+  handleCartCallback,
+  handleAddItem,
+  handleRemoveItem, // Functions imported from AddProductHome Component
   onClick,
-  to: To,
-  ...rest
+  ProductObject,
 }) {
   const { admin } = useAuth()
-  const heart = useRef(null)
-
-  function handleIsActive() {
-    heart.current.classList.toggle('isActive')
-  }
 
   return (
-    <Container {...rest}>
+    <Container ProductObject={ProductObject}>
       <button
-        ref={heart}
-        className={admin == 1 ? 'iconButton' : 'iconButton heartIcon'}
-        onClick={(event) => {
-          handleIsActive()
-          onclick
-        }}
+        className={admin === true ? 'iconButton' : 'iconButton heartIcon'}
+        onClick={onClick}
       >
-        {admin == 1 ? <PencilIcon /> : <HeartIcon />}
-      </button>
-      <Link to={To}>
-        <img src={Src} />
-        {productName}
-      </Link>
-      <p>{productDescription}</p>
-      <span>{productPrice}</span>
-      <div>
-        {admin == 1 ? (
-          <></>
+        {admin === true ? (
+          <PencilIcon />
+        ) : ProductObject.favorites.length === 0 ? (
+          <HeartIcon />
         ) : (
-          <AddProductHome className="addProduct" title="incluir" />
+          <FilledHeartIcon />
+        )}
+      </button>
+      <Link to={`/details/${ProductObject.id}`}>
+        <img
+          src={`${api.defaults.baseURL}/files/${ProductObject.image}`}
+          alt={`Foto de ${ProductObject.title}`}
+        />
+        {`${ProductObject.title} >`}
+      </Link>
+      <p className="web">
+        {ProductObject.description.length <= 58
+          ? ProductObject.description
+          : ProductObject.description.substring(0, 55).concat('...')}
+      </p>
+      <span>{`R$ ${ProductObject.price.toString().replace('.', ',')}`}</span>
+      <div>
+        {admin === false && (
+          <AddProductHome
+            className="addProduct"
+            // Calling functions created at the component AddProductHome
+            handleCartCallback={handleCartCallback}
+            ItemId={ProductObject.id}
+            handleAddItem={handleAddItem}
+            handleRemoveItem={handleRemoveItem}
+          />
         )}
       </div>
     </Container>

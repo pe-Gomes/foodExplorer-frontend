@@ -1,35 +1,38 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  grid-area: 'header';
-
-  width: 100%;
-  height: 104px;
-
-  padding: 24px 123px;
-
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+  gap: 0 2.75em;
 
-  .disabled {
+  padding: 3.5em 1.75em 1.75em;
+
+  .web {
     display: none;
+  }
+
+  .active {
+    display: ${({ isActive }) => (isActive ? 'flex' : 'none')};
+  }
+
+  @media (min-width: 1150px) {
+    padding: 1.5em 8em;
+
+    .mobile {
+      display: none;
+    }
+    .web {
+      display: flex;
+    }
   }
 `
 
 export const Brand = styled.div`
-  min-width: 198px;
-  margin-right: 32px;
-
-  display: grid;
+  display: flex;
   align-items: center;
-  justify-content: end;
-
-  grid-template-columns: 30px auto;
-  grid-template-rows: 30px auto;
-  grid-template-areas:
-    'logo' 'text'
-    'admin';
+  gap: 0 8px;
 
   > svg {
     grid-area: 'logo';
@@ -39,27 +42,41 @@ export const Brand = styled.div`
   }
 
   > h1 {
-    margin-left: 10px;
-
-    grid-area: 'text';
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
+    ${({ theme }) => theme.FONTS_ROBOTO_BIGGER_BOLD}
   }
   span {
-    grid-area: 'admin';
-    grid-column: 2;
-
-    font-family: 'Roboto', sans-serif;
-    line-height: 160%;
-    font-size: 12px;
+    ${({ theme }) => theme.FONTS_ROBOTO_SMALLEST_REGULAR}
     color: ${({ theme }) => theme.COLORS.CAKE_200};
     text-align: end;
+  }
+
+  @media (min-width: 1150px) {
+    display: grid;
+    align-items: center;
+    justify-content: end;
+
+    grid-template-columns: 30px auto;
+    grid-template-rows: 30px auto;
+    grid-template-areas:
+      'logo' 'text'
+      'admin';
+
+    > svg {
+      grid-area: 'logo';
+    }
+
+    > h1 {
+      min-width: 172px;
+      grid-area: 'text';
+    }
+    span {
+      grid-area: 'admin';
+      grid-column: 2;
+    }
   }
 `
 
 export const Search = styled.div`
-  height: 48px;
   width: 100%;
   position: relative;
 
@@ -136,15 +153,15 @@ export const SearchResults = styled.ul`
 export const ActionButtons = styled.div`
   display: flex;
   align-items: center;
+  gap: 2em;
 
   > button:first-child {
-    margin: 0 32px;
     width: 216px;
   }
 
   .exitIcon {
-    width: 32px;
-    height: 32px;
+    width: 2em;
+    height: 2em;
 
     svg > path {
       stroke: ${({ theme }) => theme.COLORS.LIGHT_100};

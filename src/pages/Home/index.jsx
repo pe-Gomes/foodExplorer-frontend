@@ -2,22 +2,19 @@ import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../../hooks/auth'
 
 import { api } from '../../services/api'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import { Container, Hero, Carousel, Gallery, Products } from './styles'
-import HomeImg from '../../assets/imgs/img-home.png'
+import { Container, Hero, Carousel, Gallery } from './styles'
+import HomeImg from '../../assets/img-home.png'
 import { ReactComponent as LeftArrow } from '../../assets/CaretLeft.svg'
 import { ReactComponent as RightArrow } from '../../assets/CaretRight.svg'
-import { ReactComponent as HeartIcon } from '../../assets/Heart.svg'
-import { ReactComponent as PencilIcon } from '../../assets/Pencil.svg'
-import { ReactComponent as FilledHeartIcon } from '../../assets/FilledHeart.svg'
 
 import { Header } from '../../components/Header'
 import { HeaderAdmin } from '../../components/HeaderAdmin'
 import { Footer } from '../../components/Footer'
-import { AddProductHome } from '../../components/AddProductHome'
+import { Product } from '../../components/Product'
 
-export function Home({ handleAddItem, handleRemoveItem, handleCartCallback }) {
+export function Home() {
   const navigate = useNavigate()
   const { admin } = useAuth()
   const [data, setData] = useState([])
@@ -95,179 +92,60 @@ export function Home({ handleAddItem, handleRemoveItem, handleCartCallback }) {
 
         <h2>Refeições</h2>
         <Carousel>
-          <button className="left-arrow" onClick={handleToLeftMeal}>
+          <button className="left-arrow web" onClick={handleToLeftMeal}>
             <LeftArrow />
           </button>
-          <button className="right-arrow" onClick={handleToRightMeal}>
+          <button className="right-arrow web" onClick={handleToRightMeal}>
             <RightArrow />
           </button>
-          <Gallery ref={mealCarousel}>
+          <Gallery ref={mealCarousel} isAdmin={admin}>
             {meal &&
               meal.map((entry) => (
-                <Products key={entry.id}>
-                  <button
-                    className={
-                      admin === true ? 'iconButton' : 'iconButton heartIcon'
-                    }
-                    onClick={(e) => handleIconButton(e, entry)}
-                  >
-                    {admin === true ? (
-                      <PencilIcon />
-                    ) : entry.favorites.length === 0 ? (
-                      <HeartIcon />
-                    ) : (
-                      <FilledHeartIcon />
-                    )}
-                  </button>
-                  <Link to={`/details/${entry.id}`}>
-                    <img
-                      src={`${api.defaults.baseURL}/files/${entry.image}`}
-                      alt={`Foto de ${entry.title}`}
-                    />
-                    {`${entry.title} >`}
-                  </Link>
-                  <p>
-                    {entry.description.length <= 58
-                      ? entry.description
-                      : entry.description.substring(0, 55).concat('...')}
-                  </p>
-                  <span>
-                    {`R$ ${entry.price.toString().replace('.', ',')}`}
-                  </span>
-                  <div>
-                    {admin === false && (
-                      <AddProductHome
-                        className="addProduct"
-                        title="incluir"
-                        // Calling functions created at the component AddProductHome
-                        handleCartCallback={handleCartCallback}
-                        ItemId={entry.id}
-                        handleAddItem={handleAddItem}
-                        handleRemoveItem={handleRemoveItem}
-                      />
-                    )}
-                  </div>
-                </Products>
+                <Product
+                  key={entry.id}
+                  onClick={(e) => handleIconButton(e, entry)}
+                  ProductObject={entry}
+                />
               ))}
           </Gallery>
         </Carousel>
         <h2>Sobremesas</h2>
         <Carousel>
-          <button className="left-arrow" onClick={handleToLeftDessert}>
+          <button className="left-arrow web" onClick={handleToLeftDessert}>
             <LeftArrow />
           </button>
-          <button className="right-arrow" onClick={handleToRightDessert}>
+          <button className="right-arrow web" onClick={handleToRightDessert}>
             <RightArrow />
           </button>
-          <Gallery ref={dessertCarousel}>
+          <Gallery ref={dessertCarousel} isAdmin={admin}>
             {dessert &&
               dessert.map((entry) => (
-                <Products key={entry.id}>
-                  <button
-                    className={
-                      admin === true ? 'iconButton' : 'iconButton heartIcon'
-                    }
-                    onClick={(e) => handleIconButton(e, entry)}
-                  >
-                    {admin === true ? (
-                      <PencilIcon />
-                    ) : entry.favorites.length === 0 ? (
-                      <HeartIcon />
-                    ) : (
-                      <FilledHeartIcon />
-                    )}
-                  </button>
-                  <Link to={`/details/${entry.id}`} key={`${entry.id}_link`}>
-                    <img
-                      src={`${api.defaults.baseURL}/files/${entry.image}`}
-                      alt={`Foto de ${entry.title}`}
-                    />
-                    {`${entry.title} >`}
-                  </Link>
-                  <p>
-                    {entry.description.length <= 58
-                      ? entry.description
-                      : entry.description.substring(0, 55).concat('...')}
-                  </p>
-                  <span>
-                    {`R$ ${entry.price.toString().replace('.', ',')}`}
-                  </span>
-                  <div>
-                    {admin === false && (
-                      <AddProductHome
-                        className="addProduct"
-                        title="incluir"
-                        key={`${entry.id}_last_button}`}
-                        // Calling functions created at the component AddProductHome
-                        handleCartCallback={handleCartCallback}
-                        ItemId={entry.id}
-                        handleAddItem={handleAddItem}
-                        handleRemoveItem={handleRemoveItem}
-                      />
-                    )}
-                  </div>
-                </Products>
+                <Product
+                  key={entry.id}
+                  onClick={(e) => handleIconButton(e, entry)}
+                  ProductObject={entry}
+                />
               ))}
           </Gallery>
         </Carousel>
 
         <h2>Bebidas</h2>
         <Carousel>
-          <button className="left-arrow" onClick={handleToLeftDrink}>
+          <button className="left-arrow web" onClick={handleToLeftDrink}>
             <LeftArrow />
           </button>
-          <button className="right-arrow" onClick={handleToRightDrink}>
+          <button className="right-arrow web" onClick={handleToRightDrink}>
             <RightArrow />
           </button>
 
-          <Gallery ref={drinkCarousel}>
+          <Gallery ref={drinkCarousel} isAdmin={admin}>
             {drink &&
               drink.map((entry) => (
-                <Products key={entry.id}>
-                  <button
-                    className={
-                      admin === true ? 'iconButton' : 'iconButton heartIcon'
-                    }
-                    onClick={(e) => handleIconButton(e, entry)}
-                  >
-                    {admin === true ? (
-                      <PencilIcon />
-                    ) : entry.favorites.length === 0 ? (
-                      <HeartIcon />
-                    ) : (
-                      <FilledHeartIcon />
-                    )}
-                  </button>
-                  <Link to={`/details/${entry.id}`} key={`${entry.id}_link`}>
-                    <img
-                      src={`${api.defaults.baseURL}/files/${entry.image}`}
-                      alt={`Foto de ${entry.title}`}
-                    />
-                    {`${entry.title} >`}
-                  </Link>
-                  <p>
-                    {entry.description.length <= 58
-                      ? entry.description
-                      : entry.description.substring(0, 55).concat('...')}
-                  </p>
-                  <span>
-                    {`R$ ${entry.price.toString().replace('.', ',')}`}
-                  </span>
-                  <div>
-                    {admin === false && (
-                      <AddProductHome
-                        className="addProduct"
-                        title="incluir"
-                        key={`${entry.id}_last_button`}
-                        // Calling functions created at the component AddProductHome
-                        handleCartCallback={handleCartCallback}
-                        ItemId={entry.id}
-                        handleAddItem={handleAddItem}
-                        handleRemoveItem={handleRemoveItem}
-                      />
-                    )}
-                  </div>
-                </Products>
+                <Product
+                  key={entry.id}
+                  onClick={(e) => handleIconButton(e, entry)}
+                  ProductObject={entry}
+                />
               ))}
           </Gallery>
         </Carousel>

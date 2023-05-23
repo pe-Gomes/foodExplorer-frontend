@@ -1,18 +1,28 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 100%;
-  height: 48px;
-
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 1em;
 
   > button {
-    margin-left: 33px;
-    height: 48px;
-
+    width: 162px;
+    height: 2em;
+    margin: 0 0 24px 0;
     ${({ theme }) => theme.FONTS.POPPINS_100_MEDIUM};
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  }
+
+  @media (min-width: 1150px) {
+    flex-direction: row;
+
+    > button {
+      width: 100%;
+      height: 3em;
+      margin: 0 0 0 33px;
+    }
   }
 `
 
@@ -47,7 +57,6 @@ export const AddRemove = styled.div`
 
   span {
     margin: 0 14px;
-
     ${({ theme }) => theme.FONTS.ROBOTO_BIG_BOLD};
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
   }

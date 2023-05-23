@@ -1,15 +1,12 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  height: 462px;
-  min-width: 258px;
-
   position: relative;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 1em;
 
   > a {
     display: flex;
@@ -18,24 +15,26 @@ export const Container = styled.div`
     text-align: center;
 
     ${({ theme }) => theme.FONTS.POPPINS_300_BOLD};
+    font-size: clamp(0.5rem, 2vw + 0.5rem, 1.5rem);
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    height: max-content;
   }
 
   > p {
     ${({ theme }) => theme.FONTS.ROBOTO_SMALLER_REGULAR};
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
     text-align: center;
-    height: 44px;
   }
 
   > span {
     ${({ theme }) => theme.FONTS.ROBOTO_BIGGEST_REGULAR};
+    font-size: clamp(0.5rem, 3vw + 0.5rem, 1.5rem);
     color: ${({ theme }) => theme.COLORS.CAKE_200};
   }
 
   img {
-    height: 176px;
-    width: 176px;
+    height: 88px;
+    width: 88px;
     margin-bottom: 15px;
     pointer-events: none;
 
@@ -43,10 +42,11 @@ export const Container = styled.div`
   }
 
   .iconButton {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
 
     border: none;
+    outline: none;
     background: transparent;
 
     position: absolute;
@@ -58,6 +58,7 @@ export const Container = styled.div`
   }
 
   .heartIcon {
+    right: 42px;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     &:hover {
       color: ${({ theme }) => theme.COLORS.TOMATO_300};
@@ -76,5 +77,30 @@ export const Container = styled.div`
 
   > div {
     padding: 0 48px;
+  }
+
+  @media (min-width: 1150px) {
+    height: 462px;
+    min-width: 258px;
+
+    gap: 1em;
+
+    > p {
+      height: 44px;
+    }
+
+    img {
+      height: 176px;
+      width: 176px;
+    }
+
+    .iconButton {
+      width: 24px;
+      height: 24px;
+    }
+
+    > div {
+      padding: 0 48px;
+    }
   }
 `

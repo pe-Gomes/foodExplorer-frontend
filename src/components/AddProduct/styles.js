@@ -1,17 +1,14 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 100%;
-  height: 48px;
-
   display: flex;
   align-items: center;
 
   > button {
     margin-left: 33px;
-    height: 48px;
 
     ${({ theme }) => theme.FONTS.POPPINS_100_MEDIUM};
+    font-size: clamp(0.4rem, 2vw + 1px, 0.85rem);
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
   }
 `
@@ -19,13 +16,13 @@ export const Container = styled.div`
 export const AddRemove = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 14px;
 
   > button {
     background: transparent;
     border: none;
     outline: none !important;
-    width: 18px;
-    height: 18px;
 
     animation: transform 0.4s;
 
@@ -43,8 +40,6 @@ export const AddRemove = styled.div`
   }
 
   span {
-    margin: 0 14px;
-
     ${({ theme }) => theme.FONTS.ROBOTO_BIG_BOLD};
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
   }

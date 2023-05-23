@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { useAuth } from '../hooks/auth'
 
 import { BrowserRouter } from 'react-router-dom'
@@ -11,7 +10,13 @@ export function Routes() {
 
   return (
     <BrowserRouter>
-      {!user ? <AuthRoutes /> : admin == 1 ? <AdminRoutes /> : <AppRoutes />}
+      {!user ? (
+        <AuthRoutes />
+      ) : admin === true ? (
+        <AdminRoutes />
+      ) : (
+        <AppRoutes />
+      )}
     </BrowserRouter>
   )
 }

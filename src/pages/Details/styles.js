@@ -1,91 +1,68 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  min-height: 100svh;
 
-  display: grid;
-  grid-template-rows: 104px auto 78px;
-  grid-template-areas:
-    'header'
-    'content'
-    'footer';
+  .return,
+  main {
+    width: 80%;
+    margin: 0 auto;
+  }
 
-  header {
-    margin-top: 24px;
+  .return {
+    padding: 1.5em 0 1em 0;
 
     ${({ theme }) => theme.FONTS.POPPINS_300_BOLD};
 
     svg {
-      margin-right: 11px;
-      font-size: 32px;
+      margin-right: 12px;
+      font-size: 2em;
     }
   }
 
-  > main {
-    padding: 0 122px;
-    max-width: 1228px;
-
-    margin: 0 auto;
-
-    grid-area: 'content';
-
-    > div {
-      margin-top: 42px;
-
-      display: flex;
-      gap: 48px;
-
-      > img {
-        height: 390px;
-        width: 390px;
-      }
+  main {
+    position: relative;
+    flex-grow: 1;
+    padding: 0 3.5em;
+    img {
+      height: 17em;
+      height: 17em;
     }
   }
 
-  @media (max-width: 1024px) {
+  .image {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width: 1150px) {
+    .return {
+      padding-bottom: 1.5em 0 0 3em;
+    }
+
     main {
-      padding: 0 15px;
-      max-width: 80vw;
-    }
+      display: flex;
+      gap: 3em;
+      margin-bottom: 3.5em;
 
-    main > div {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+      img {
+        height: 25em;
+        width: 25em;
+      }
 
-      & > img {
-        width: 186px;
-        height: 186px;
+      button {
+        width: 132px;
       }
     }
-  }
-
-  footer {
-    grid-area: 'footer';
   }
 `
 
 export const Information = styled.div`
-  @media (max-width: 1024px) {
-    & {
-      width: 100%;
-    }
-
-    & > div {
-      width: fit-content;
-      margin: 0 auto 24px auto;
-    }
-
-    .tags {
-      display: grid;
-      grid-template-columns: repeat(2, auto);
-      gap: 12px;
-    }
-  }
-
   > div {
-    margin-top: 48px;
+    margin-top: 3em;
 
     button:nth-child(2) {
       width: 162px;
@@ -93,18 +70,49 @@ export const Information = styled.div`
     }
   }
 
-  > button {
-    margin-top: 48px;
-    width: 131px;
+  .tags-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(0.5em, 5.8em));
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+
+    span {
+      display: block;
+      text-align: center;
+    }
   }
 
   h1 {
     ${({ theme }) => theme.FONTS.POPPINS_500_MEDIUM}
+    font-size: clamp(1.5rem,5vw + 1rem,2.5rem);
+    text-align: center;
+    margin-top: 1em;
   }
 
   p {
     ${({ theme }) => theme.FONTS.POPPINS_300_REGULAR}
+    font-size: clamp(.8rem, 2vw + 1rem, 1.5rem);
 
-    margin: 24px 0;
+    margin: 2em 0;
+  }
+
+  > button {
+    margin-top: 3em;
+  }
+
+  @media (min-width: 1150px) {
+    .tags-wrapper {
+      grid-template-columns: repeat(auto-fill, minmax(3em, 12em));
+      justify-content: start;
+    }
+    h1,
+    p {
+      text-align: left;
+    }
+
+    h1 {
+      margin: 0;
+    }
   }
 `

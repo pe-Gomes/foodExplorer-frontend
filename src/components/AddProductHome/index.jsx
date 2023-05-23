@@ -22,17 +22,21 @@ export function AddProductHome({
   function handleCartCallback(e, ItemId) {
     e.preventDefault()
     updateItemsCart(ItemId, number)
+
+    if (number === 0) {
+      setNumber(1)
+    }
   }
 
   function handleAddItem() {
-    setNumber(number + 1)
+    setNumber((prevState) => prevState + 1)
   }
 
   function handleRemoveItem() {
     if (number === 0) {
       setNumber(0)
     } else {
-      setNumber(number - 1)
+      setNumber((prevState) => prevState - 1)
     }
   }
 
@@ -50,7 +54,7 @@ export function AddProductHome({
         </button>
       </AddRemove>
       <Button
-        title={title}
+        title={number === 0 ? 'excluir' : 'incluir'}
         onClick={(e) => handleCartCallback(e, ItemId)}
         Itemid={ItemId}
       />
