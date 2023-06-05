@@ -1,5 +1,6 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: 'http://localhost:3333',
+  baseURL:
+    'https://foodexplorer-backend-vcq3.onrender.com' /* or 'http://localhost:${BACKEND_PORT}' */,
 })
