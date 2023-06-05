@@ -50,7 +50,9 @@ export function SignIn() {
           autoComplete="current-password"
           onKeyPress={(e) => handleEnterAsSubmit(e)}
         />
-        <Button title="Entrar" onClick={handleSignIn} />
+        <div>
+          <Button title="Entrar" onClick={handleSignIn} />
+        </div>
 
         <div>
           <Link to="/register">Criar uma conta</Link>

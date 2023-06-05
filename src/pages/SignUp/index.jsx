@@ -51,6 +51,7 @@ export function SignUp() {
         <Input
           type="text"
           placeholder="Exemplo: Maria"
+          autoComplete="username"
           tabIndex="0"
           onChange={(e) => setName(e.target.value)}
           onKeyPress={(e) => handleEnterAsSubmit(e)}
@@ -60,6 +61,7 @@ export function SignUp() {
         <Input
           type="email"
           placeholder="Exemplo: exemplo@exemplo.com"
+          autoComplete="email"
           onChange={(e) => setEmail(e.target.value)}
           onKeyPress={(e) => handleEnterAsSubmit(e)}
         />
@@ -72,7 +74,9 @@ export function SignUp() {
           onChange={(e) => setPassword(e.target.value)}
           onKeyPress={(e) => handleEnterAsSubmit(e)}
         />
-        <Button title="Criar Conta" onClick={handleSubmit} />
+        <div>
+          <Button title="Criar Conta" onClick={handleSubmit} />
+        </div>
 
         <div>
           <Link to="/">Já tenho uma conta</Link>

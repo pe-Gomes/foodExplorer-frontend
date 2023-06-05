@@ -144,8 +144,7 @@ export const SearchResults = styled.ul`
 export const ActionButtons = styled.div`
   position: relative;
 
-  .productsIcon {
-  }
+  height: 3em;
 
   > button:first-child {
     margin: 0 32px;

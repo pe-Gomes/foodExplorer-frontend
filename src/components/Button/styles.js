@@ -1,12 +1,10 @@
 import styled from 'styled-components'
 
 export const Container = styled.button`
-  width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 0.5em;
 
   border: none;
   border-radius: 5px;
@@ -18,6 +16,6 @@ export const Container = styled.button`
   background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 
   svg {
-    font-size: 32px;
+    font-size: 2rem;
   }
 `

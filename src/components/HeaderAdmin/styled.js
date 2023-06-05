@@ -155,6 +155,13 @@ export const ActionButtons = styled.div`
   align-items: center;
   gap: 2em;
 
+  > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+  }
+
   > button:first-child {
     width: 216px;
   }

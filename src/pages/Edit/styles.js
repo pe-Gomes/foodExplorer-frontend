@@ -19,11 +19,8 @@ export const Container = styled.div`
   }
 
   > main {
-    width: 80%;
+    max-width: 80%;
     margin: 0 auto;
-
-    display: flex;
-    flex-direction: column;
     flex-grow: 1;
 
     > h1 {
@@ -96,8 +93,7 @@ export const Form = styled.div`
       }
     }
 
-    .saveButton,
-    .deleteButton {
+    .saveButton {
       width: 172px;
     }
   }

@@ -40,7 +40,7 @@ export const Brand = styled.div`
   }
 `
 
-export const Form = styled.div`
+export const Form = styled.form`
   @media screen and (min-width: 1200px) {
     & {
       min-width: 476px;
@@ -66,8 +66,16 @@ export const Form = styled.div`
     margin: 32px 0 8px;
   }
 
-  > button {
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  > div button {
     margin: 32px 0;
+    width: 100%;
   }
 
   > div {

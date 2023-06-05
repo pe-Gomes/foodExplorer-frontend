@@ -66,8 +66,16 @@ export const Form = styled.form`
     margin: 32px 0 8px;
   }
 
-  > button {
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  > div button {
     margin: 32px 0;
+    width: 100%;
   }
 
   > div {

@@ -48,13 +48,6 @@ export function New() {
     navigate(-1)
   }
 
-  function handleImage(event) {
-    const file = event.target.files[0]
-    const fileUploadForm = new FormData()
-    fileUploadForm.append('image', file)
-    setImageFile(fileUploadForm)
-  }
-
   function handleNewTag() {
     setTags((prevState) => [...prevState, newTag])
     setNewTag('')
@@ -78,7 +71,10 @@ export function New() {
     }
 
     if (imageFile !== null) {
-      const response = await api.patch('/files', imageFile)
+      const fileUploadForm = new FormData()
+      fileUploadForm.append('image', imageFile)
+
+      const response = await api.patch('/files', fileUploadForm)
       await api.post('/products', {
         title,
         description,
@@ -98,7 +94,7 @@ export function New() {
     }
 
     alert('Produto Cadastrado com sucesso!')
-    handleBack()
+    navigate('/')
   }
 
   return (
@@ -116,7 +112,11 @@ export function New() {
               <label htmlFor="image">
                 <UploadIcon /> Selecione imagem
               </label>
-              <input type="file" id="image" onChange={handleImage} />
+              <input
+                type="file"
+                id="image"
+                onChange={(e) => setImageFile(e.target.files[0])}
+              />
             </InputWrapper>
 
             <InputWrapper>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/auth'
 import { useShop } from '../../hooks/shopContext'
 import { api } from '../../services/api'
@@ -47,7 +47,7 @@ export function Header() {
       setSearchData(res.data)
     }
     fetchSearchResults()
-  }, [search])
+  }, [search, numberOfItemsOnCart])
 
   return (
     <>
@@ -92,10 +92,11 @@ export function Header() {
             className="web"
             title={`Pedidos (${numberOfItemsOnCart})`}
             icon={ReceiptIcon}
+            onClick={() => navigate('/order')}
           />
-          <a href="#" className="mobile productsIcon">
+          <Link to="/order" className="mobile productsIcon">
             <ReceiptIcon />
-          </a>
+          </Link>
           <div className="mobile numberOfItems">{numberOfItemsOnCart}</div>
           <IconButton
             icon={ExitIcon}

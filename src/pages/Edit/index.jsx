@@ -41,7 +41,7 @@ export function Edit() {
   const [title, setTitle] = useState(data.title)
   const [description, setDescription] = useState(data.description)
   const [price, setPrice] = useState(data.price)
-  const [imageFile, setImageFile] = useState()
+  const [imageFile, setImageFile] = useState(null)
   const [imagePath, setImagePath] = useState(data.image)
 
   const [tags, setTags] = useState([])
@@ -66,7 +66,7 @@ export function Edit() {
 
   async function handleUpdateProduct() {
     try {
-      if (imageFile) {
+      if (imageFile !== null) {
         const fileUploadForm = new FormData()
         fileUploadForm.append('image', imageFile)
 
@@ -102,7 +102,7 @@ export function Edit() {
 
     if (confirm) {
       await api.delete(`/products/${params.id}`)
-      navigate(-1)
+      navigate('/')
     }
   }
 

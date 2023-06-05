@@ -52,10 +52,6 @@ export const Container = styled.div`
         height: 25em;
         width: 25em;
       }
-
-      button {
-        width: 132px;
-      }
     }
   }
 `
@@ -64,7 +60,7 @@ export const Information = styled.div`
   > div {
     margin-top: 3em;
 
-    button:nth-child(2) {
+    > button:nth-child(2) {
       width: 162px;
       ${({ theme }) => theme.FONTS.POPPINS_100_MEDIUM};
     }
@@ -103,7 +99,8 @@ export const Information = styled.div`
 
   @media (min-width: 1150px) {
     .tags-wrapper {
-      grid-template-columns: repeat(auto-fill, minmax(3em, 12em));
+      display: flex;
+      gap: 1em;
       justify-content: start;
     }
     h1,

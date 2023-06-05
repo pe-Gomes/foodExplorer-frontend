@@ -4,7 +4,19 @@ import { api } from '../services/api'
 export const ShopContext = createContext()
 
 function ShopProvider({ children }) {
-  const [numberOfItemsOnCart, setNumberOfItemsOnCart] = useState(0)
+  const inicialCartData = () => {
+    const cart = JSON.parse(localStorage.getItem('@food-explorer:cart'))
+
+    if (!cart) {
+      return []
+    }
+
+    return cart.filter((product) => product.addedItems !== 0)
+  }
+
+  const [numberOfItemsOnCart, setNumberOfItemsOnCart] =
+    useState(getInicialCartNumber)
+  const [cartData, setCartData] = useState(inicialCartData)
 
   function updateItemsCart(itemId, number) {
     const cart = localStorage.getItem('@food-explorer:cart')
@@ -17,7 +29,9 @@ function ShopProvider({ children }) {
       ...rest,
       {
         product_id: selected[0].product_id,
+        title: selected[0].title,
         price: selected[0].price,
+        image: selected[0].image,
         addedItems: number,
       },
     ]
@@ -29,8 +43,32 @@ function ShopProvider({ children }) {
     }
 
     setNumberOfItemsOnCart(sumOfItems)
-
     localStorage.setItem('@food-explorer:cart', JSON.stringify(result))
+    handleCartData()
+  }
+
+  function getInicialCartNumber() {
+    const cart = JSON.parse(localStorage.getItem('@food-explorer:cart'))
+
+    if (!cart) return 0
+
+    let sumOfItems = 0
+
+    for (let i = 0; i < cart.length; i++) {
+      sumOfItems += cart[i].addedItems
+    }
+    return sumOfItems
+  }
+
+  function handleCartData() {
+    const cart = localStorage.getItem('@food-explorer:cart')
+    const parseCart = JSON.parse(cart)
+
+    const productsOnCart = parseCart.filter(
+      (product) => product.addedItems !== 0,
+    )
+
+    setCartData(productsOnCart)
   }
 
   useEffect(() => {
@@ -43,7 +81,9 @@ function ShopProvider({ children }) {
 
         cart = allProducts.map((product) => ({
           product_id: product.id,
+          title: product.title,
           price: product.price,
+          image: product.image,
           addedItems: 0,
         }))
 
@@ -51,12 +91,14 @@ function ShopProvider({ children }) {
       }
     }
     fetchDefaultCart()
+    getInicialCartNumber()
   }, [])
 
   return (
     <ShopContext.Provider
       value={{
         updateItemsCart,
+        cartData,
         numberOfItemsOnCart,
       }}
     >

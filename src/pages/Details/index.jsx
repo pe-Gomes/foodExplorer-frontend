@@ -76,10 +76,13 @@ export function Details({
                 ))}
               </div>
               {admin ? (
-                <Button title="Editar prato" onClick={handleEdit} />
+                <Button
+                  title="Editar prato"
+                  className="edit-button"
+                  onClick={handleEdit}
+                />
               ) : (
                 <AddProduct
-                  className="addRemove"
                   title={`incluir ∙ R$ ${price}`}
                   handleRemoveItem={handleRemoveItem}
                   handleAddItem={handleAddItem}
